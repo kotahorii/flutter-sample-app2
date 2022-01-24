@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/dummy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,12 +58,34 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+      print("call setState");
       _counter++;
     });
+    nextPage();
+  }
+
+  void nextPage() async {
+    await Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return DummyPage();
+    }));
+  }
+
+  @override
+  void initState() {
+    print("call initState");
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print("call didChangeDependencies");
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("call build");
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -111,5 +134,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    print("call didUpdateWidget");
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void deactivate() {
+    print("call deactivate");
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print("call dispose");
+    super.dispose();
   }
 }
